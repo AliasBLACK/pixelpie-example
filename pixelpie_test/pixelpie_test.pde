@@ -4,9 +4,7 @@ Minim minim;
 PixelPie pie;
 
 void setup() {
-  
-  // Setup enviroment.
-  size(1366, 768, P2D);
+  size(800, 600);
   noSmooth();
   
   // Init Minim and PixelPie.
@@ -23,15 +21,6 @@ void setup() {
 
 void draw() {}
 
-public class character extends gameObject {
-  public character() {super(pie);}
-  
-  public void init() {
-    setSprite("walk_down");
-  }
-  
-  public void update() {
-    pie.cameraX = x - (width/pie.pixelSize)/2;
-    pie.cameraY = y - (height/pie.pixelSize)/2;
-  }
+public class wall extends gameObject {
+  public wall () {super(pie);}
 }
