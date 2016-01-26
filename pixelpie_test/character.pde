@@ -7,15 +7,16 @@ public class character extends gameObject {
   
   public void init() {
     
-    // Set initial sprite.
     setSprite("walk_down");
+    lockBBox = true;
   }
   
-  public void update() { 
-    
-    // Camera control.
-    pie.cameraX = x - (width/pie.pixelSize)/2;
-    pie.cameraY = y - (height/pie.pixelSize)/2;
+  public void move() {
+    x = Math.round(x + xSpeed);
+    y = Math.round(y + ySpeed);
+  }
+  
+  public void update() {
     
     // Movement control.
     xSpeed = horzSpeed * (left + right);
@@ -35,7 +36,10 @@ public class character extends gameObject {
     } else {
       setSprite("walk_up");
     }
-      
+
+    // Center camera on character.
+    pie.cameraX = x - (width/pie.pixelSize)/2;
+    pie.cameraY = y - (height/pie.pixelSize)/2;
   }
   
   public void keyPressed() {
@@ -82,42 +86,38 @@ public class character extends gameObject {
     }
   }
   
+  // If we're going to collide with object "otherPredict" next frame.
   public void colPredict() {
     
-    // If colliding next frame with wall...
-    if (otherPredict.type == "wall") {
+    // If we're not already colliding.
+    if (!PixelPie.objCollision(this, otherPredict)) {
       
-      // Check if it's a horizontal collision.
+      // If impending collision is from top/bottom.
       if (PixelPie.objHorzCollision(this, otherPredict)) {
         
-        // If we're not already pressing up against it.
-        if (PixelPie.horzDist(this, otherPredict) != 0) {
+        // Snap to the surface of the colliding object and remove all vertical speed.
+        y += PixelPie.vertDist(this, otherPredict);
+        ySpeed = 0;
         
-          // Adjust xSpeed so we land just on the surface of the wall.
-          xSpeed = PixelPie.horzDist(this, otherPredict);
-          
-        // If we actually are pressing up against it.
-        } else {
-          
-          // Stop horizontal movement.
-          xSpeed = 0;
-        }
+      // Else, if impending collision is from left/right.
+      } else {
         
-      // Else, if it is a vertical collision.
-      } else if (PixelPie.objVertCollision(this, otherPredict)){
-        
-        // Adjust ySpeed so we land just on teh surface of the wall.
-        ySpeed = PixelPie.vertDist(this, otherPredict);
+        // Snap to the surface of the colliding object and remove all horizontal speed.
+        x += PixelPie.horzDist(this, otherPredict);
+        xSpeed = 0;
       }
     }
   }
   
+  // If we're already colliding with something.
   public void collide() {
-    if (other.type == "wall") {
-      if ((pie.left(other) == right(this)) && xSpeed > 0) {xSpeed = 0;}
-      if ((right(other) == left(this)) && xSpeed < 0) {xSpeed = 0;}
-      if ((top(other) == bottom(this)) && ySpeed > 0) {ySpeed = 0;}
-      if ((bottom(other) == top(this)) && ySpeed < 0) {ySpeed = 0;}
-    }
+    
+    // Since we already made sure to snap to surfaces of objects we're predicted to collide with in colPredict(),
+    // We just have to deal with stopping the character from moving further into objects they are pressing up against.
+    
+    if (PixelPie.left(this) == PixelPie.right(other)) {xSpeed = constrain(xSpeed, 0, horzSpeed);}
+    if (PixelPie.right(this) == PixelPie.left(other)) {xSpeed = constrain(xSpeed, -1 * horzSpeed, 0);}
+    if (PixelPie.top(this) == PixelPie.btm(other)) {ySpeed = constrain(ySpeed, 0, vertSpeed);}
+    if (PixelPie.btm(this) == PixelPie.top(other)) {ySpeed = constrain(ySpeed, -1 * vertSpeed, 0);}
   }
 }

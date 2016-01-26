@@ -4,7 +4,8 @@ Minim minim;
 PixelPie pie;
 
 void setup() {
-  size(800, 600);
+  size(800, 600, P2D);
+  frameRate(30);
   noSmooth();
   
   // Init Minim and PixelPie.
