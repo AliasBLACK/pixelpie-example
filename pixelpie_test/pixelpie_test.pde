@@ -1,4 +1,4 @@
-import ddf.minim.*;
+import ddf.minim.Minim;
 
 Minim minim;
 PixelPie pie;

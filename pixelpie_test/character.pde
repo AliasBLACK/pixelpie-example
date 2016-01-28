@@ -7,13 +7,8 @@ public class character extends gameObject {
   
   public void init() {
     
+    // Set some parameters.
     setSprite("walk_down");
-    lockBBox = true;
-  }
-  
-  public void move() {
-    x = Math.round(x + xSpeed);
-    y = Math.round(y + ySpeed);
   }
   
   public void update() {
@@ -38,8 +33,8 @@ public class character extends gameObject {
     }
 
     // Center camera on character.
-    pie.cameraX = x - (width/pie.pixelSize)/2;
-    pie.cameraY = y - (height/pie.pixelSize)/2;
+    pie.displayX = x - (width/pie.pixelSize)/2;
+    pie.displayY = y - (height/pie.pixelSize)/2;
   }
   
   public void keyPressed() {
