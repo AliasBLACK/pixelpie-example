@@ -5,15 +5,12 @@ PixelPie pie;
 
 void setup() {
   size(800, 600, P2D);
-  frameRate(30);
-  noSmooth();
   
   // Init Minim and PixelPie.
   minim = new Minim(this);
-  pie = new PixelPie(this, minim);
+  pie = new PixelPie(this, minim, 2);
   
-  // Setup PixelPie.
-  pie.pixelSize = 2;
+  // Show FPS.
   pie.displayFPS = true;
   
   // Load initial level.
@@ -23,5 +20,5 @@ void setup() {
 void draw() {}
 
 public class wall extends gameObject {
-  public wall () {super(pie);}
+  public wall() {super(pie);}
 }

@@ -13,11 +13,11 @@ public class character extends gameObject {
   
   public void update() {
     
-    // Movement control.
+    // Movement.
     xSpeed = horzSpeed * (left + right);
     ySpeed = vertSpeed * (up + down);
     
-    // Animation control.
+    // Animation.
     if (ySpeed == 0) {
       if (xSpeed > 0) {
         setSprite("walk_right");
