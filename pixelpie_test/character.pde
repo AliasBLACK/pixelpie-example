@@ -1,4 +1,4 @@
-public class character extends gameObject {
+public class character extends GameObject {
   public character() {super(pie);}
   
   int horzSpeed = 5;

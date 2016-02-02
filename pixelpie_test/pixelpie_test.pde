@@ -1,14 +1,14 @@
 import ddf.minim.Minim;
 
-Minim minim;
 PixelPie pie;
+PixelOven oven;
 
 void setup() {
   size(800, 600, P2D);
   
   // Init Minim and PixelPie.
-  minim = new Minim(this);
-  pie = new PixelPie(this, minim, 2);
+  oven = new PixelOvenJava(this);
+  pie = new PixelPie(this, oven, 2);
   
   // Show FPS.
   pie.displayFPS = true;
@@ -19,6 +19,6 @@ void setup() {
 
 void draw() {}
 
-public class wall extends gameObject {
+public class wall extends GameObject {
   public wall() {super(pie);}
 }

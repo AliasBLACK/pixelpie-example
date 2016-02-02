@@ -1,4 +1,4 @@
-public class exit extends gameObject {
+public class exit extends GameObject {
   public exit() {super(pie);}
   
   String nextLevel;
