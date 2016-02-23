@@ -4,7 +4,7 @@ PixelPie pie;
 PixelOven oven;
 
 void setup() {
-  size(800, 600, P2D);
+  fullScreen();
   
   // Init Minim and PixelPie.
   oven = new PixelOvenJava(this);
