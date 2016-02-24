@@ -4,11 +4,12 @@ PixelPie pie;
 PixelOven oven;
 
 void setup() {
-  fullScreen();
+  fullScreen(P2D);
+  noSmooth();
   
   // Init Minim and PixelPie.
   oven = new PixelOvenJava(this);
-  pie = new PixelPie(this, oven, 2);
+  pie = new PixelPie(this, oven, 2, 60.0);
   
   // Show FPS.
   pie.displayFPS = true;
