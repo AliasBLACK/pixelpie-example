@@ -4,7 +4,7 @@ PixelPie pie;
 PixelOven oven;
 
 void setup() {
-  fullScreen(P2D);
+  size(1366, 768, P2D);
   noSmooth();
   
   // Init Minim and PixelPie.

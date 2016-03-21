@@ -8,16 +8,19 @@ public class character extends GameObject {
   public void init() {
     
     // Set some parameters.
-    setSprite("walk_down");
+    setSprite("walk_down");  // Initial sprite.
+    setDepth(5);             // Set depth. (Larger number = on top)
   }
   
   public void update() {
     
     // Movement.
+    // Calculate resultant x and y speeds.
     xSpeed = horzSpeed * (left + right);
     ySpeed = vertSpeed * (up + down);
     
     // Animation.
+    // Choose what sprite to render based on it's current x and y speeds.
     if (ySpeed == 0) {
       if (xSpeed > 0) {
         setSprite("walk_right");
