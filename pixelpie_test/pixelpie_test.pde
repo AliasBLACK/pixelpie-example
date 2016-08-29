@@ -1,14 +1,18 @@
-import ddf.minim.Minim;
+import ddf.minim.Minim;  // Comment this line out for Android.
 
 PixelPie pie;
 PixelOven oven;
 
 void setup() {
-  size(1366, 768, P2D);
-  noSmooth();
   
-  // Init Minim and PixelPie.
-  oven = new PixelOvenJava(this);
+  // Enable fullscreen.
+  fullScreen(P2D);
+  
+  // Init PixelOven.
+  oven = new PixelOvenJava(this);        // Use this if running on Mac, Linux or Windows.
+  //oven = new PixelOvenAndroid(this);   // Use this if running on Android.
+  
+  // Init PixelPie.
   pie = new PixelPie(this, oven, 2, 60.0);
   
   // Show FPS.
@@ -18,7 +22,14 @@ void setup() {
   pie.loadLevel("interior");
 }
 
-void draw() {}
+void draw() {
+  
+  // Display loading text.
+  if (pie.levelLoading) {
+    textAlign(CENTER, CENTER);
+    text(pie.loadingText, width/2, height/2);
+  }
+}
 
 public class wall extends GameObject {
   public wall() {super(pie);}

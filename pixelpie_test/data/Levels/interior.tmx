@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="31">
  <properties>
+  <property name="bgm" value="Sounds/ForestAndTrees.mp3"/>
   <property name="brightness" value="100"/>
  </properties>
  <tileset firstgid="1" name="tilea4" tilewidth="16" tileheight="16" tilecount="960" columns="32">
@@ -10046,5 +10047,4 @@
   <object id="28" x="464" y="128" width="80" height="96"/>
   <object id="29" x="304" y="96" width="192" height="64"/>
  </objectgroup>
- <objectgroup name="(sound) soundLayer"/>
 </map>
